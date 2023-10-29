@@ -1,2 +1,3 @@
 # garmashmaha
-Próba
+Hi there 👋
+I'm IT technician
