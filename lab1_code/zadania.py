@@ -1,4 +1,5 @@
 import json
+import time
 
 # Wczytaj dane z pliku JSON
 with open("imiona.json", "r") as file:
@@ -6,8 +7,6 @@ with open("imiona.json", "r") as file:
 
 # Wyświetl listę najpopularniejszych imion dzieci
 print(lista_imion)
-
-import time
 
 def suma_od_1_do_n(n):
     suma = 0
