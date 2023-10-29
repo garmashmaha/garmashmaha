@@ -1,4 +1,4 @@
 # garmashmaha
-Hi there 👋
--I'm IT technician
--I'm starting my programming journey
+Hi there 👋 <br>
+-I'm IT technician 👨🏽‍💻 <br>
+-I'm starting my programming journey 🚀
