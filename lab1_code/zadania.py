@@ -55,3 +55,8 @@ end_time = time.time()
 
 print(wynik)
 print("Czas wykonania:", end_time - start_time, "sekundy")
+
+unikalne_imiona = list(set([elem['name'] for elem in lista_imion]))
+
+# Wypisz unikalne imiona
+print(unikalne_imiona)
