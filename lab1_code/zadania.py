@@ -1,3 +1,12 @@
+import json
+
+# Wczytaj dane z pliku JSON
+with open("imiona.json", "r") as file:
+    lista_imion = json.load(file)
+
+# Wyświetl listę najpopularniejszych imion dzieci
+print(lista_imion)
+
 import time
 
 def suma_od_1_do_n(n):
