@@ -39,3 +39,19 @@ end_time = time.time()
 
 print(wynik)
 print("Czas wykonania:", end_time - start_time, "sekundy")
+
+def znajdz_imie_w_typie(imie, lista_imion, typ_imienia):
+    if imie in [elem['name'] for elem in lista_imion if elem['type'] == typ_imienia]:
+        return f"Imię {imie} jest na liście typu {typ_imienia}."
+    else:
+        return f"Imię {imie} nie występuje na liście typu {typ_imienia}."
+
+imie_do_wyszukania = "Julian"
+typ_imienia_do_wyszukania = "HISPANIC"
+
+start_time = time.time()
+wynik = znajdz_imie_w_typie(imie_do_wyszukania, lista_imion, typ_imienia_do_wyszukania)
+end_time = time.time()
+
+print(wynik)
+print("Czas wykonania:", end_time - start_time, "sekundy")
