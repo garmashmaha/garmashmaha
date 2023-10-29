@@ -6,7 +6,8 @@ def suma_od_1_do_n(n):
         suma += i
     return suma
 
-n = 1000000  # Przykład: obliczenie sumy od 1 do 1 000 000
+# Odczytaj wartość n z klawiatury
+n = int(input("Podaj wartość n: "))
 
 start_time = time.time()
 wynik = suma_od_1_do_n(n)
