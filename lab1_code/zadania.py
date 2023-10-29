@@ -24,3 +24,18 @@ end_time = time.time()
 
 print("Wynik:", wynik)
 print("Czas wykonania:", end_time - start_time, "sekundy")
+
+def znajdz_imie(imie, lista_imion):
+    if imie in lista_imion:
+        return f"Imię {imie} jest na liście."
+    else:
+        return f"Imię {imie} nie występuje na liście."
+
+imie_do_wyszukania = "Julian"
+
+start_time = time.time()
+wynik = znajdz_imie(imie_do_wyszukania, lista_imion)
+end_time = time.time()
+
+print(wynik)
+print("Czas wykonania:", end_time - start_time, "sekundy")
