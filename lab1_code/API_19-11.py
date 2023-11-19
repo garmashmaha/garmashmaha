@@ -15,6 +15,6 @@ def LoadJson():
     content_type=request.headers.get('Content-type')
     if(content_type=='application/json'):
         mojeDane=request.get_json()
-        return mojeDane
+        return mojeDane['mail']
 
 app.run()
