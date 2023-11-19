@@ -10,4 +10,11 @@ def witajSwiecie():
 def dane():
     return jsonify({'imie': 'Maria', 'nazwisko': 'Harmash', 'email': 'mashagarmash.17@gmail.com'})
 
-app.run
+@app.route("/dane", methods=['POST'])
+def LoadJson():
+    content_type=request.headers.get('Content-type')
+    if(content_type=='application/json'):
+        mojeDane=request.get_json()
+        return mojeDane
+
+app.run()
