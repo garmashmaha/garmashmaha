@@ -20,7 +20,7 @@ def znajdz_imie_w_typie(imie, lista_imion, typ_imienia):
         return f"Imię {imie} nie występuje na liście typu {typ_imienia}."
 
 # ZADANIE 2: Wczytaj dane z pliku JSON
-with open("imiona.json", "r") as file:
+with open("/home/codespace/.python/garmashmaha/lab1_code/imiona.json", "r") as file:
     lista_imion = json.load(file)
 
 # ZADANIE 3: Wyszukiwanie imienia "Julian" w liście imion
