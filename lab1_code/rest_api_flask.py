@@ -1,1 +1,35 @@
+from flask import Flask, jsonify
+import json
+import random
+import time
 
+app = Flask(__name__)
+
+# ZADANIE0: Funkcja, która zlicza sumę od 1 do n
+def suma_od_1_do_n(n):
+    return sum(range(1, n + 1))
+
+# ZADANIE1: Zmierz czas wykonania podanej funkcji
+def zmierz_czas(funkcja, *args):
+    start_time = time.time()
+    wynik = funkcja(*args)
+    end_time = time.time()
+    return wynik, end_time - start_time
+
+# ZADANIE2: Wczytaj dane z pliku JSON
+def wczytaj_dane_z_json(sciezka):
+    with open(sciezka, "r") as file:
+        return json.load(file)
+
+# ZADANIE3: Wyszukaj imię w liście imion
+def znajdz_imie(imie, lista_imion):
+    return imie in lista_imion
+
+# ZADANIE4: Wyszukaj imię w liście imion typu "HISPANIC"
+def znajdz_imie_w_typie(imie, lista_imion, typ_imienia):
+    is_imie = any(elem['name'] == imie and elem['type'] == typ_imienia for elem in lista_imion)
+    return is_imie
+
+# ZADANIE5: Tworzenie unikalnej listy imion bez powtórzeń
+def unikalne_imiona(lista_imion):
+    return list({elem['name'] for elem in lista_imion})
