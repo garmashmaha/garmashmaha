@@ -66,3 +66,69 @@ def binary_search(arr, item):
         else:
             low = mid + 1
     return False
+
+# Endpointy dla zadań
+
+@app.route('/zadanie0/<int:n>', methods=['GET'])
+def zadanie0(n):
+    return jsonify({"suma": suma_od_1_do_n(n)})
+
+@app.route('/zadanie1', methods=['GET'])
+def zadanie1():
+    wynik, czas_wykonania = zmierz_czas(suma_od_1_do_n, 1000)  # Przykładowe wykonanie dla n=1000
+    return jsonify({"wynik": wynik, "czas_wykonania": czas_wykonania})
+
+@app.route('/zadanie2', methods=['GET'])
+def zadanie2():
+    sciezka_do_pliku = "imiona.json"  # Ścieżka do pliku JSON z danymi
+    lista_imion = wczytaj_dane_z_json(sciezka_do_pliku)
+    return jsonify(lista_imion)
+
+@app.route('/zadanie3/<imie>', methods=['GET'])
+def zadanie3(imie):
+    sciezka_do_pliku = "imiona.json"  # Ścieżka do pliku JSON z danymi
+    lista_imion = wczytaj_dane_z_json(sciezka_do_pliku)
+    wynik = znajdz_imie(imie, [elem['name'] for elem in lista_imion])
+    return jsonify({"wynik": wynik})
+
+@app.route('/zadanie4/<imie>/<typ_imienia>', methods=['GET'])
+def zadanie4(imie, typ_imienia):
+    sciezka_do_pliku = "imiona.json"  # Ścieżka do pliku JSON z danymi
+    lista_imion = wczytaj_dane_z_json(sciezka_do_pliku)
+    wynik = znajdz_imie_w_typie(imie, lista_imion, typ_imienia)
+    return jsonify({"wynik": wynik})
+
+@app.route('/zadanie5', methods=['GET'])
+def zadanie5():
+    sciezka_do_pliku = "imiona.json"  # Ścieżka do pliku JSON z danymi
+    lista_imion = wczytaj_dane_z_json(sciezka_do_pliku)
+    unikalne = unikalne_imiona(lista_imion)
+    return jsonify({"unikalne_imiona": unikalne})
+
+@app.route('/zadanie6', methods=['GET'])
+def zadanie6():
+    return jsonify({"liczby": generuj_liczby()})
+
+@app.route('/zadanie7', methods=['GET'])
+def zadanie7():
+    liczby = generuj_liczby()
+    posortowane = bubble_sort(liczby)
+    return jsonify({"posortowane": posortowane})
+
+@app.route('/zadanie8', methods=['GET'])
+def zadanie8():
+    sciezka_do_pliku = "imiona.json"  # Ścieżka do pliku JSON z danymi
+    lista_imion = wczytaj_dane_z_json(sciezka_do_pliku)
+    set_do_posortowania = {elem['name'] for elem in lista_imion if elem['type'] == "HISPANIC"}
+    posortowany_set = sortuj_set(set_do_posortowania)
+    return jsonify({"posortowany_set": posortowany_set})
+
+@app.route('/zadanie9', methods=['GET'])
+def zadanie9():
+    liczby = generuj_liczby()
+    posortowane = bubble_sort(liczby)
+    wynik_wyszukiwania = binary_search(posortowane, 500)  # Wyszukiwanie przykładowej liczby 500
+    return jsonify({"wynik_wyszukiwania": wynik_wyszukiwania})
+
+if __name__ == '__main__':
+    app.run(debug=True)
