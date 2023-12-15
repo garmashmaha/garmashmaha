@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+import re  # Dodaj tę linię
 
 app = Flask(__name__)
 
@@ -49,14 +50,9 @@ def insertion_sort_words(words):
 def count_word_occurrences(text, words):
     word_count = {}
     for word in words:
-        count = 0
-        idx = 0
-        while idx != -1:
-            idx = text.find(word, idx)
-            if idx != -1:
-                count += 1
-                idx += len(word)
-        word_count[word] = count
+        pattern = r'\b' + word + r'\b'  # Szukaj całych słów, a nie tylko sekwencji znaków
+        matches = re.findall(pattern, text)
+        word_count[word] = len(matches)
     return word_count
 
 @app.route('/count_chars_and_words', methods=['POST'])
