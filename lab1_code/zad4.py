@@ -1,7 +1,7 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
-
+   
 def count_characters(text):
     char_count = {}
     for char in text:
@@ -32,13 +32,15 @@ def insertion_sort(char_count):
 @app.route('/count_chars', methods=['POST'])
 def count_chars():
     if 'string' not in request.form:
+        print("dupa: " + request.form['string'])
         return jsonify({"error": "Brak parametru 'string'."}), 400
     
     text = request.form['string']
+    print("dupa: " + request.form['string'])
     result = count_characters(text)
     
     return jsonify({"character_count": result})
 
+
 if __name__ == '__main__':
     app.run(debug=True)
-
