@@ -1,0 +1,18 @@
+[
+    {"name": "Anna", "type": "Polish"},
+    {"name": "Bob", "type": "English"},
+    {"name": "Dominic", "type": "Spanish"},
+    {"name": "Piotr","type": "Polish"},
+    {"name": "Wiktor","type": "Polish"},
+    {"name": "Marcin","type": "Polish"},
+    {"name": "Wojciech","type": "Polish"},
+    {"name": "Maria","type": "Polish"},
+    {"name": "Zbyszek","type": "Polish"},
+    {"name": "Tomasz","type": "Polish"},
+    {"name": "Wiktor","type": "English"},
+    {"name": "Wojciech","type": "Spanish"},
+    {"name": "Maria","type": "Spanish"},
+    {"name": "Zbyszek","type": "Spanish"},
+    {"name": "Tomasz","type": "Spanish"},
+    {"name": "Wiktor","type": "English"}
+]

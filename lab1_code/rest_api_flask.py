@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 import json
 import random
 import time
+from collections import Counter
 
 app = Flask(__name__)
 
@@ -20,6 +21,17 @@ def zmierz_czas(funkcja, *args):
 def wczytaj_dane_z_json(sciezka):
     with open(sciezka, "r") as file:
         return json.load(file)
+    
+def popularne_imiona(sciezka):
+    with open(sciezka, "r") as file:
+        imiona=json.load(file)
+        
+    counter_imion = Counter([imie['name'] for imie in imiona])
+
+    # Wybór najpopularniejszych imion (występujących więcej niż raz)
+    najpopularniejsze = [imie for imie, count in counter_imion.items() if count > 1]
+
+    return jsonify({"najpopularniejsze_imiona": najpopularniejsze})
 
 # ZADANIE3: Wyszukaj imię w liście imion
 def znajdz_imie(imie, lista_imion):
@@ -80,27 +92,28 @@ def zadanie1():
 
 @app.route('/zadanie2', methods=['GET'])
 def zadanie2():
-    sciezka_do_pliku = "imiona.json"  # Ścieżka do pliku JSON z danymi
-    lista_imion = wczytaj_dane_z_json(sciezka_do_pliku)
-    return jsonify(lista_imion)
+    sciezka_do_pliku = "lab1_code/imie.json"  # Ścieżka do pliku JSON z danymi
+    najpopularniejsze_imiona = popularne_imiona(sciezka_do_pliku)
+    return najpopularniejsze_imiona
 
 @app.route('/zadanie3/<imie>', methods=['GET'])
 def zadanie3(imie):
-    sciezka_do_pliku = "imiona.json"  # Ścieżka do pliku JSON z danymi
+    sciezka_do_pliku = "lab1_code/imie.json"  # Ścieżka do pliku JSON z danymi
     lista_imion = wczytaj_dane_z_json(sciezka_do_pliku)
     wynik = znajdz_imie(imie, [elem['name'] for elem in lista_imion])
+    #wynik = znajdz_imie(imie, lista_imion)
     return jsonify({"wynik": wynik})
 
 @app.route('/zadanie4/<imie>/<typ_imienia>', methods=['GET'])
 def zadanie4(imie, typ_imienia):
-    sciezka_do_pliku = "imiona.json"  # Ścieżka do pliku JSON z danymi
+    sciezka_do_pliku = "lab1_code/imie.json"  # Ścieżka do pliku JSON z danymi
     lista_imion = wczytaj_dane_z_json(sciezka_do_pliku)
     wynik = znajdz_imie_w_typie(imie, lista_imion, typ_imienia)
     return jsonify({"wynik": wynik})
 
 @app.route('/zadanie5', methods=['GET'])
 def zadanie5():
-    sciezka_do_pliku = "imiona.json"  # Ścieżka do pliku JSON z danymi
+    sciezka_do_pliku = "lab1_code/imie.json"  # Ścieżka do pliku JSON z danymi
     lista_imion = wczytaj_dane_z_json(sciezka_do_pliku)
     unikalne = unikalne_imiona(lista_imion)
     return jsonify({"unikalne_imiona": unikalne})
@@ -115,13 +128,14 @@ def zadanie7():
     posortowane = bubble_sort(liczby)
     return jsonify({"posortowane": posortowane})
 
-@app.route('/zadanie8', methods=['GET'])
-def zadanie8():
-    sciezka_do_pliku = "imiona.json"  # Ścieżka do pliku JSON z danymi
+@app.route('/zadanie8/<typ_imienia>', methods=['GET'])
+def zadanie8(typ_imienia):
+    sciezka_do_pliku = "lab1_code/imie.json"  # Ścieżka do pliku JSON z danymi
     lista_imion = wczytaj_dane_z_json(sciezka_do_pliku)
-    set_do_posortowania = {elem['name'] for elem in lista_imion if elem['type'] == "HISPANIC"}
-    posortowany_set = sortuj_set(set_do_posortowania)
-    return jsonify({"posortowany_set": posortowany_set})
+    wynik = [elem['name'] for elem in lista_imion if elem['type'] == typ_imienia]
+    posortowany = bubble_sort(wynik)
+    return jsonify({"posortowane_imiona_typu": posortowany})
+
 
 @app.route('/zadanie9', methods=['GET'])
 def zadanie9():
