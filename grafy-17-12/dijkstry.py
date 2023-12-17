@@ -34,16 +34,11 @@ def create_graph():
     graph = {}
 
     for i in range(num_vertices):
-        # Pytamy użytkownika o nazwę każdego wierzchołka.
         name = input(f"Podaj nazwę wierzchołka {i+1}: ")
         graph[name] = {}
-
-        # Pytamy użytkownika o liczbę krawędzi wychodzących z danego wierzchołka.
         num_edges = int(input(f"Podaj liczbę krawędzi z wierzchołka {name}: "))
 
         for j in range(num_edges):
-            # Pytamy użytkownika o nazwę wierzchołka docelowego dla każdej krawędzi
-            # oraz o wagę tej krawędzi.
             edge_name = input(f"Podaj nazwę wierzchołka docelowego dla krawędzi {j+1} z {name}: ")
             edge_weight = int(input(f"Podaj wagę dla krawędzi {j+1} z {name} do {edge_name}: "))
 
@@ -56,7 +51,6 @@ def create_graph():
 # Tworzymy graf na podstawie danych wprowadzonych przez użytkownika.
 graph = create_graph()
 
-# Pytamy użytkownika o wierzchołek startowy.
 start_vertex = input("Podaj wierzchołek startowy: ")
 
 # Wywołujemy funkcję dijkstra i wyświetlamy wynik.
