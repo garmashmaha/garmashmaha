@@ -1,6 +1,7 @@
 import numpy as np
 
 def is_valid(board, row, col, num):
+    """Sprawdź, czy liczba jest ważna dla danego miejsca na planszy."""
     # Sprawdź wiersz
     if num in board[row]:
         return False
@@ -16,6 +17,7 @@ def is_valid(board, row, col, num):
     return True
 
 def solve_sudoku(board):
+    """Rozwiąż problem Sudoku za pomocą algorytmu backtracking."""
     for i in range(9):
         for j in range(9):
             if board[i][j] == 0:
@@ -28,7 +30,18 @@ def solve_sudoku(board):
                 return False
     return True
 
-# Przykładowa plansza Sudoku
+def print_board(board):
+    """Wydrukuj planszę Sudoku w ładny sposób."""
+    for i in range(9):
+        for j in range(9):
+            print(board[i][j], end=' ')
+            if (j+1) % 3 == 0 and j < 8:
+                print("|", end=' ')
+        print()
+        if (i+1) % 3 == 0 and i < 8:
+            print("-"*21)
+
+# Twoja plansza Sudoku
 board = np.array([[5, 3, 0, 0, 7, 0, 0, 0, 0],
                   [6, 0, 0, 1, 9, 5, 0, 0, 0],
                   [0, 9, 8, 0, 0, 0, 0, 6, 0],
@@ -41,6 +54,6 @@ board = np.array([[5, 3, 0, 0, 7, 0, 0, 0, 0],
 
 if solve_sudoku(board):
     print("Rozwiązanie Sudoku:")
-    print(board)
+    print_board(board)
 else:
     print("Brak rozwiązania")
