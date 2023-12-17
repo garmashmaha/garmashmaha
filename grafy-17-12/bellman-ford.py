@@ -21,21 +21,16 @@ def bellman_ford(graph, start_vertex):
     return distance
 
 def create_graph():
-    # Pytamy użytkownika o liczbę wierzchołków.
     num_vertices = int(input("Podaj liczbę wierzchołków: "))
     graph = {}
 
     for i in range(num_vertices):
-        # Pytamy użytkownika o nazwę każdego wierzchołka.
         name = input(f"Podaj nazwę wierzchołka {i+1}: ")
         graph[name] = {}
 
-        # Pytamy użytkownika o liczbę krawędzi wychodzących z danego wierzchołka.
         num_edges = int(input(f"Podaj liczbę krawędzi z wierzchołka {name}: "))
 
         for j in range(num_edges):
-            # Pytamy użytkownika o nazwę wierzchołka docelowego dla każdej krawędzi
-            # oraz o wagę tej krawędzi.
             edge_name = input(f"Podaj nazwę wierzchołka docelowego dla krawędzi {j+1} z {name}: ")
             edge_weight = int(input(f"Podaj wagę dla krawędzi {j+1} z {name} do {edge_name}: "))
 
