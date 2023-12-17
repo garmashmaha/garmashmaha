@@ -16,6 +16,14 @@ def is_valid(board, row, col, num):
         return False
     return True
 
+def is_valid_board(board):
+    """Sprawdź, czy początkowa plansza Sudoku jest prawidłowa."""
+    for i in range(9):
+        for j in range(9):
+            if board[i][j] != 0 and not is_valid(board, i, j, board[i][j]):
+                return False
+    return True
+
 def solve_sudoku(board):
     """Rozwiąż problem Sudoku za pomocą algorytmu backtracking."""
     for i in range(9):
@@ -42,18 +50,21 @@ def print_board(board):
             print("-"*21)
 
 # Twoja plansza Sudoku
-board = np.array([[5, 3, 0, 0, 7, 0, 0, 0, 0],
-                  [6, 0, 0, 1, 9, 5, 0, 0, 0],
-                  [0, 9, 8, 0, 0, 0, 0, 6, 0],
-                  [8, 0, 0, 0, 6, 0, 0, 0, 3],
-                  [4, 0, 0, 8, 0, 3, 0, 0, 1],
-                  [7, 0, 0, 0, 2, 0, 0, 0, 6],
-                  [0, 6, 0, 0, 0, 0, 2, 8, 0],
-                  [0, 0, 0, 4, 1, 9, 0, 0, 5],
-                  [0, 0, 0, 0, 8, 0, 0, 7, 9]])
+board = np.array([[0, 0, 0, 4, 0, 0, 1, 9, 0],
+                 [0, 3, 0, 0, 0, 0, 8, 6, 0],
+                 [0, 0, 7, 0, 8, 3, 5, 0, 0],
+                 [0, 0, 0, 0, 0, 8, 6, 0, 0],
+                 [8, 0, 5, 1, 0, 8, 0, 0, 0],
+                 [0, 2, 0, 0, 0, 0, 3, 5, 0],
+                 [0, 8, 1, 0, 4, 0, 0, 0, 0],
+                 [0, 0, 0, 0, 7, 0, 0, 0, 0],
+                 [0, 4, 0, 2, 5, 0, 0, 0, 0]])
 
-if solve_sudoku(board):
-    print("Rozwiązanie Sudoku:")
-    print_board(board)
+if is_valid_board(board):
+    if solve_sudoku(board):
+        print("Rozwiązanie Sudoku:")
+        print_board(board)
+    else:
+        print("Brak rozwiązania")
 else:
-    print("Brak rozwiązania")
+    print("Początkowa plansza Sudoku jest nieprawidłowa")
