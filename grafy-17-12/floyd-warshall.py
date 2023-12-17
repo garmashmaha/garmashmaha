@@ -19,12 +19,16 @@ def create_graph():
     num_vertices = int(input("Podaj liczbę wierzchołków: "))
     graph = [[float('infinity') for _ in range(num_vertices)] for _ in range(num_vertices)]
 
+    # Ustawiamy wartości na przekątnej na 0, ponieważ odległość od wierzchołka do samego siebie wynosi 0.
+    for i in range(num_vertices):
+        graph[i][i] = 0
+
     for i in range(num_vertices):
         num_edges = int(input(f"Podaj liczbę krawędzi z wierzchołka {i+1}: "))
 
         for j in range(num_edges):
-            edge_index = int(input(f"Podaj indeks wierzchołka docelowego dla krawędzi {j+1} z wierzchołka {i+1}: "))
-            edge_weight = int(input(f"Podaj wagę dla krawędzi {j+1} z wierzchołka {i+1} do wierzchołka {edge_index+1}: "))
+            edge_index = int(input(f"Podaj indeks wierzchołka docelowego dla krawędzi {j+1} z wierzchołka {i+1}: ")) - 1
+            edge_weight = int(input(f"Podaj wagę dla krawędzi {j+1} z wierzchołka {i+1} do wierzchołka {edge_index+2}: "))
 
             # Dodajemy krawędź do grafu.
             graph[i][edge_index] = edge_weight
