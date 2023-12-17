@@ -1,8 +1,18 @@
 def floyd_warshall(graph):
-    # Inicjalizujemy macierz odległości jako macierz wag krawędzi w grafie.
-    distance = {v: dict(graph[v]) for v in graph}
-
     vertices = list(graph.keys())
+    num_vertices = len(vertices)
+
+    # Inicjalizujemy macierz odległości jako macierz wag krawędzi w grafie.
+    distance = {v: {u: float('infinity') for u in vertices} for v in vertices}
+
+    # Ustawiamy wartości na przekątnej na 0, ponieważ odległość od wierzchołka do samego siebie wynosi 0.
+    for v in vertices:
+        distance[v][v] = 0
+
+    # Ustawiamy odległości dla istniejących krawędzi.
+    for v in graph:
+        for u in graph[v]:
+            distance[v][u] = graph[v][u]
 
     # Przechodzimy przez wszystkie wierzchołki i aktualizujemy macierz odległości.
     for k in vertices:
@@ -14,6 +24,7 @@ def floyd_warshall(graph):
                     distance[i][j] = distance[i][k] + distance[k][j]
 
     return distance
+
 
 def create_graph():
     num_vertices = int(input("Podaj liczbę wierzchołków: "))
